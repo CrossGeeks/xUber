@@ -5,12 +5,17 @@ Uber Clone using Xamarin Forms
 ## UI 
 <p align="center">
 <img width="300" height:"700" src="Screenshots/sample.gif" title="iOS"/>
+</p>
+
+<p align="center">
 <img width="300" height:"700" src="Screenshots/screenshot1.png" title="iOS"/>
+</p>
+
 <img width="300" height:"700" src="Screenshots/screenshot2.png" title="iOS"/>
 <img width="300" height:"700" src="Screenshots/screenshot3.png" title="iOS"/>
 <img width="300" height:"700" src="Screenshots/screenshot4.png" title="iOS"/>
 <img width="300" height:"700" src="Screenshots/screenshot5.png" title="iOS"/>
-</p>
+
 
 
 ## Tools used
