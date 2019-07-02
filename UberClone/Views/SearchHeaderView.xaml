@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="UberClone.Views.SearchHeaderView"
             xmlns:enumVal="clr-namespace:UberClone.Helpers"
-             Padding="15,40"
+             Padding="15,20"
              ColumnSpacing="10"
              RowSpacing="10"
              BackgroundColor="White"

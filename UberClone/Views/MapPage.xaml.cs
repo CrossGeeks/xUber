@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.GoogleMaps;
 using System.Reflection;
 using UberClone.ViewModels;
+using Xamarin.Forms.PlatformConfiguration.iOSSpecific;
 
 namespace UberClone.Views
 {
@@ -150,7 +151,7 @@ namespace UberClone.Views
         void OnCenterMap(Location location)
         {
             map.MoveToRegion(MapSpan.FromCenterAndRadius(
-                new Position(location.Latitude, location.Longitude), Distance.FromMiles(1)));
+                new Position(location.Latitude, location.Longitude), Distance.FromMiles(2)));
 
             LoadNearCars(location);
         }
@@ -200,6 +201,17 @@ namespace UberClone.Views
         {
             headerSearch.FocusDestination();
         }
-        
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            var safeInsets = On<Xamarin.Forms.PlatformConfiguration.iOS>().SafeAreaInsets();
+
+            if (safeInsets.Top > 0)
+            {
+                menuIcon.Margin = backButton.Margin=new Thickness(20, 40, 20, 0);
+                headerSearch.BackButtonPadding = new Thickness(0, 20, 0, 0);
+            }
+        }
     }
 }

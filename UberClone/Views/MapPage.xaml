@@ -17,8 +17,9 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0"
-                 Grid.RowSpan="2"
-                 ColumnSpacing="0">
+              Grid.RowSpan="2"
+              ColumnSpacing="0"
+              RowSpacing="0">
                   <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
@@ -60,7 +61,7 @@
                HorizontalOptions="Start"
                IsVisible="false"
                x:Name="backButton"
-               Margin="20,40,20,0"
+               Margin="20,20,20,0"
               HeightRequest="30"
               WidthRequest="30"
               Grid.Row="0"
@@ -83,7 +84,7 @@
                IsVisible="false"
                VerticalOptions="Start"
                HorizontalOptions="Start"
-               Margin="20,40,20,0"
+               Margin="20,20,20,0"
                HeightRequest="30"
                WidthRequest="30"
                Grid.Row="0"
