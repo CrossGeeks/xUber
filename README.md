@@ -4,7 +4,7 @@ Uber Clone using Xamarin Forms
 ## Tools used
 - **Xamarin.Forms.GoogleMaps** - Map library for Xamarin.Forms using Google maps API  https://github.com/amay077/Xamarin.Forms.GoogleMaps
 
-- **PropertyChanged.Fody** - Handles property changed events, ideal for MVVM.
+- **PropertyChanged.Fody** - Handles property changed events.
 https://github.com/Fody/PropertyChanged
 
 - **Xamarin.Essentials** - Essential cross platform APIs for your mobile apps.     
