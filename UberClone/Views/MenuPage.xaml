@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="UberClone.Views.MenuPage"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:model="clr-namespace:UberClone.Models"
+             Title="Menu" BackgroundColor="White">
+    <ContentPage.Content>
+        <StackLayout>
+        <Grid BackgroundColor="Black"
+                      HeightRequest="230"
+                      RowSpacing="15"
+                      x:Name="layout"
+                      ColumnSpacing="15"
+                      HorizontalOptions="FillAndExpand"
+                      Padding="20,50,20,20"
+                      VerticalOptions="Start">
+                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <controls:CircleImage Source="{Binding Source={x:Static model:User.UserImage}}"
+                                          BorderColor="Gray"
+                                          BorderThickness="2"
+                                          Aspect="AspectFill"
+                                          WidthRequest="70"
+                                          HeightRequest="70"
+                                          HorizontalOptions="Center"
+                                          Grid.Row="0"
+                                          Grid.RowSpan="2"
+                                          Grid.Column="0"/>
+                    
+                    <Label Text="{Binding Source={x:Static model:User.FullName}}"
+                           VerticalOptions="EndAndExpand"
+                           Grid.Row="0" 
+                           Grid.Column="1"
+                           TextColor="White" 
+                           Style="{StaticResource HeaderMenuLabel}"
+                           FontAttributes="Bold"  />
+                    
+                     <Label Text="{Binding Source={x:Static model:User.Rating}, StringFormat='{0} ★'}"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           Style="{StaticResource HeaderMenuLabel}"
+                           TextColor="Gray"  />
+                    
+                    <BoxView HeightRequest="1"
+                             Margin="-20,10,-20,0"
+                           HorizontalOptions="FillAndExpand"
+                           Color="Gray"
+                             Grid.Row="2"
+                             Grid.Column="0"
+                             Grid.ColumnSpan="2"/>
+                    
+                    <Label Text="Do more with your account"
+                           Grid.Row="3"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Style="{StaticResource HeaderMenuLabel}"
+                           TextColor="Gray" />
+                    
+                     <Label Text="Get food delivery"
+                           Grid.Row="4"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Style="{StaticResource HeaderMenuLabel}"
+                           TextColor="White"  />
+                    
+                     <Label Text="Make money driving"
+                           Grid.Row="5"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           Style="{StaticResource HeaderMenuLabel}"
+                           TextColor="White" />
+                </Grid>
+                <StackLayout Padding="20,20,0,0" Spacing="20" BackgroundColor="White">
+                    <Label Text="Your Trips" Style="{StaticResource MenuLabel}" />
+                    <Label Text="Help" Style="{StaticResource MenuLabel}" />
+                    <Label Text="Payment" Style="{StaticResource MenuLabel}" />
+                    <Label Text="Free Rides" Style="{StaticResource MenuLabel}" />
+                    <Label Text="Settings" Style="{StaticResource MenuLabel}" />
+                </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

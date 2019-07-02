@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ListView xmlns="http://xamarin.com/schemas/2014/forms" 
+         xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+         x:Class="UberClone.Views.SearchContentView"
+         xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core" 
+         BackgroundColor="White"
+         VerticalOptions="FillAndExpand"
+         Footer=""
+         SelectedItem="{Binding PlaceSelected, Mode=TwoWay}"
+         x:Name="list"
+          ItemSelected="Handle_ItemSelected"
+         ItemsSource="{Binding Places}"
+         HasUnevenRows="true"
+         SeparatorColor="Gray"
+         ios:ListView.SeparatorStyle="FullWidth">
+         <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="20,15"
+                              RowSpacing="2"
+                              ColumnSpacing="20">
+                        
+                            <Grid.RowDefinitions>
+                                  <RowDefinition Height="Auto"/>
+                                  <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                              <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>        
+                              </Grid.ColumnDefinitions>
+                    
+                              <Image Source="ic_recentlocation"
+                                     HeightRequest="35"
+                                     WidthRequest="35"
+                                     VerticalOptions="Start"
+                                     Grid.Row="0"
+                                     Grid.Column="0"
+                                     Grid.RowSpan="2"/>
+                        
+                                <Label LineBreakMode="MiddleTruncation"
+                                       Text="{Binding StructuredFormatting.MainText}"
+                                       Grid.Row="0"
+                                       Grid.Column="1"/>
+                                    
+                                 <Label LineBreakMode="MiddleTruncation"
+                                        FontSize="14"
+                                         Text="{Binding StructuredFormatting.SecondaryText}" 
+                                         TextColor="Gray" 
+                                         Grid.Row="1"
+                                         Grid.Column="1"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+          </ListView.ItemTemplate>
+ </ListView>

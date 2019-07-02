@@ -1,0 +1,104 @@
+﻿<StackLayout xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="UberClone.Views.PriceView"
+             xmlns:cards="clr-namespace:PanCardView;assembly=PanCardView"
+             xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             VerticalOptions="EndAndExpand"
+             Padding="20"
+             Spacing="15"
+             BackgroundColor="White"
+             x:Name="mainLayout">
+    
+        <cards:CoverFlowView  IsCyclical="false"
+                              PositionShiftValue="80"
+                              SelectedIndex="0"
+                              x:Name="carrouselList"
+                              IsAutoInteractionRunning="false"
+                              IsUserInteractionRunning="true"
+                              ItemsSource="{Binding PriceOptions}">
+            <cards:CoverFlowView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout VerticalOptions="FillAndExpand"
+                                 Padding="0,5">
+                       <Label Text="{Binding Category}"
+                              HorizontalOptions="Center"
+                              TextColor="Black"/>
+                       <Label Text="{Binding CategoryDescription}"
+                              HorizontalOptions="Center"
+                              TextColor="Gray"/>
+                       <StackLayout BindableLayout.ItemsSource="{Binding PriceDetails}"
+                                    Spacing="45"
+                                    Orientation="Horizontal"
+                                    HorizontalOptions="Center">
+                          <BindableLayout.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout >
+                                    <controls:CircleImage Source="{Binding Icon}" 
+                                                          Aspect="AspectFill"
+                                                          WidthRequest="70"
+                                                          HeightRequest="70"
+                                                          HorizontalOptions="Center"/>
+                                    
+                                    <Frame BackgroundColor="Black"
+                                           Margin="0,-10,0,0"
+                                           HorizontalOptions="Center"
+                                           HasShadow="false"
+                                           Padding="10,5"
+                                           CornerRadius="15">
+                                         <Label Text="{Binding Type}"
+                                              HorizontalOptions="Center"
+                                              TextColor="White"/>
+                                    </Frame>
+                                    
+                                     <Label Text="{Binding Price, StringFormat='USD {0}'}"
+                                          HorizontalOptions="Center"
+                                            FontSize="17"/>
+                                    
+                                      <Label Text="{Binding ArrivalETA}"
+                                          HorizontalOptions="Center"
+                                          TextColor="Gray"
+                                             FontSize="14"/>
+                                    
+                                </StackLayout>
+                            </DataTemplate>
+                        </BindableLayout.ItemTemplate>
+                       </StackLayout>
+                    </StackLayout>
+                </DataTemplate>
+            </cards:CoverFlowView.ItemTemplate>
+        </cards:CoverFlowView>
+    
+         <BoxView HorizontalOptions="FillAndExpand"
+                  Margin="0,5,0,0"
+               Color="LightGray"
+               HeightRequest="1"/>
+    
+         <StackLayout Orientation="Horizontal"
+                      HorizontalOptions="FillAndExpand">
+               <Image Source="masterCardIcon"
+                      HeightRequest="40"
+                      Aspect="AspectFit"/>
+               <Label Text=".... 6572"
+                      VerticalOptions="Center"
+                      HorizontalOptions="FillAndExpand"/>
+               <Label Text=""
+                      VerticalOptions="Center"/>
+            
+               <Image Source="ic_user"
+                      HeightRequest="25"
+                      Aspect="AspectFit"/>
+               <Label Text="1-4"
+                      TextColor="Gray"
+                      VerticalOptions="Center"/>
+         </StackLayout>
+    
+         <Button Text="{Binding PriceOptionSelected.Tag, StringFormat='CONFIRM {0}'}"
+                 BackgroundColor="Black"
+                 CornerRadius="0"
+                 Padding="5"
+                 Command="{Binding StartRouteCommand}"
+                 TextColor="White"
+                 FontSize="20"
+                 VerticalOptions="EndAndExpand"
+                 HorizontalOptions="FillAndExpand"/>
+</StackLayout>

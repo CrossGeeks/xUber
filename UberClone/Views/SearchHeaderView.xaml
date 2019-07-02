@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="UberClone.Views.SearchHeaderView"
+            xmlns:enumVal="clr-namespace:UberClone.Helpers"
+             Padding="15,40"
+             ColumnSpacing="10"
+             RowSpacing="10"
+             BackgroundColor="White"
+             VerticalOptions="Start">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+       <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+      </Grid.ColumnDefinitions>
+    
+       <Image Source="ic_back"
+              Margin="0,0,0,0"
+              x:Name="ic_Back"
+              HeightRequest="30"
+              WidthRequest="30"
+              Grid.Row="0"
+              Grid.Column="0">
+               <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding ChangePageStatusCommand}"
+                                          CommandParameter="{x:Static enumVal:PageStatusEnum.Default}"/>
+                </Image.GestureRecognizers>
+        </Image>
+    
+       <StackLayout Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.RowSpan="2"
+                    Padding="0,10"
+                    Spacing="0"
+                    HorizontalOptions="Center">
+              <BoxView HeightRequest="5"
+                       WidthRequest="5"
+                       CornerRadius="2.5"
+                       Color="Gray"
+                       x:Name="originView">
+                    <BoxView.Triggers>
+                        <DataTrigger TargetType="BoxView"
+                                     Binding="{Binding Source={x:Reference originEntry},
+                                                       Path=IsFocused}"
+                                     Value="True">
+                            <Setter Property="Color" Value="Black" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+             </BoxView>
+              <BoxView WidthRequest="0.5"
+                       HorizontalOptions="Center"
+                       VerticalOptions="FillAndExpand"
+                       Color="Gray"/>
+              <BoxView HeightRequest="5"
+                       WidthRequest="5"
+                       Color="Gray"
+                       x:Name="destionationView">
+                       <BoxView.Triggers>
+                        <DataTrigger TargetType="BoxView"
+                                     Binding="{Binding Source={x:Reference destinationEntry},
+                                                       Path=IsFocused}"
+                                     Value="True">
+                            <Setter Property="Color" Value="Black" />
+                        </DataTrigger>
+                    </BoxView.Triggers>
+             </BoxView>
+       </StackLayout>
+    
+        <Entry Placeholder="Enter Pickup"
+               Grid.Row="1" 
+               Grid.Column="1"
+               Text="{Binding PickupLocation}"
+               x:Name="originEntry"
+               ReturnType="Search"
+               HorizontalOptions="FillAndExpand" />
+    
+        <Entry Placeholder="Where to?"
+               PropertyChanged="OnDestinationEntryChange"
+               Grid.Row="2"
+               Grid.Column="1"
+               Text="{Binding DestinationLocation}"
+               x:Name="destinationEntry"
+               ReturnType="Search"
+               HorizontalOptions="FillAndExpand" />
+    
+        <Image Source="ic_add"
+               VerticalOptions="Center"
+               HeightRequest="20"
+               WidthRequest="20"
+               Grid.Row="2"
+               Grid.Column="2"/>
+    
+</Grid>

@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             mc:Ignorable="d" 
+             x:Class="UberClone.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="LightGray">#EDEDED</Color>
+            
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+            <Style  x:Key="HeaderMenuLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="20"/>
+            </Style>
+            <Style x:Key="MenuLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+            
+            <Style TargetType="Entry">
+                <Setter Property="HeightRequest" Value="40" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource LightGray}" />
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="Focused">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="LightGray" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

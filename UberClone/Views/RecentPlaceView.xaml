@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="UberClone.Views.RecentPlaceView"
+             xmlns:model="clr-namespace:UberClone.Models"
+             xmlns:enumVal="clr-namespace:UberClone.Helpers"
+             VerticalOptions="End"
+             HorizontalOptions="FillAndExpand"
+             BackgroundColor="White"
+             RowSpacing="5"
+             ColumnSpacing="15"
+             Padding="0,20">
+    
+     <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+         <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+       <RowDefinition Height="Auto"/>
+       <RowDefinition Height="Auto"/>
+       <RowDefinition Height="Auto"/>
+        <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+    </Grid.ColumnDefinitions>
+    
+     <Label Text="{Binding Source={x:Static model:User.ShortName}, StringFormat='Good morning, {0}'}"
+             FontAttributes="Bold"
+             FontSize="17"
+             Margin="0,0,0,15"
+             HorizontalOptions="CenterAndExpand"
+             Grid.Row="0"
+             Grid.Column="0"
+             Grid.ColumnSpan="2"/>
+    
+      <BoxView HorizontalOptions="FillAndExpand"
+               Color="Gray"
+               HeightRequest="1"
+               Grid.Row="1"
+               Grid.Column="0"
+               Grid.ColumnSpan="2"/>
+    
+      <StackLayout BackgroundColor="{StaticResource LightGray}"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="20,15"
+                   Padding="20"
+                   Grid.Row="2"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2">
+         <Label Text="Where to?"
+                FontSize="18"/>
+         <StackLayout.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding ChangePageStatusCommand}"
+                                  CommandParameter="{x:Static enumVal:PageStatusEnum.Searching}"/>
+        </StackLayout.GestureRecognizers>
+      </StackLayout>
+    
+    <!--Recent place 1-->
+     <Image Source="ic_recentlocation"
+            VerticalOptions="Center"
+            Margin="20,0,0,0"
+            HeightRequest="35"
+            WidthRequest="35"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.RowSpan="2">
+         <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding GetPlaceDetailCommand}"
+                                  CommandParameter="{Binding RecentPlace1}"/>
+        </Image.GestureRecognizers>
+   </Image>
+     
+    <Label Text="{Binding RecentPlace1.StructuredFormatting.MainText}"
+           FontAttributes="Bold"
+             FontSize="17"
+             Grid.Row="3"
+             Grid.Column="1">
+         <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding GetPlaceDetailCommand}"
+                                  CommandParameter="{Binding RecentPlace1}"/>
+        </Label.GestureRecognizers>
+   </Label>
+    
+    <Label Text="{Binding RecentPlace1.StructuredFormatting.SecondaryText}"
+             FontSize="17"
+             Grid.Row="4"
+             Grid.Column="1">
+         <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding GetPlaceDetailCommand}"
+                                  CommandParameter="{Binding RecentPlace1}"/>
+        </Label.GestureRecognizers>
+   </Label>
+    
+     <BoxView HorizontalOptions="FillAndExpand"
+              Margin="0,10"
+               Color="Gray"
+               HeightRequest="1"
+               Grid.Row="5"
+               Grid.Column="1"/>
+    
+     <!--Recent place 2-->
+     <Image Source="ic_recentlocation"
+            VerticalOptions="Center"
+            Margin="20,0,0,0"
+            HeightRequest="35"
+            WidthRequest="35"
+            Grid.Row="6"
+            Grid.Column="0"
+            Grid.RowSpan="2">
+        <Image.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding GetPlaceDetailCommand}"
+                                  CommandParameter="{Binding RecentPlace2}"/>
+        </Image.GestureRecognizers>
+   </Image>
+     
+    <Label Text="{Binding RecentPlace2.StructuredFormatting.MainText}"
+           FontAttributes="Bold"
+             FontSize="17"
+             Grid.Row="6"
+             Grid.Column="1">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding GetPlaceDetailCommand}"
+                                  CommandParameter="{Binding RecentPlace2}"/>
+        </Label.GestureRecognizers>
+   </Label>
+    
+    <Label Text="{Binding RecentPlace2.StructuredFormatting.SecondaryText}"
+             FontSize="17"
+             Grid.Row="7"
+             Grid.Column="1">
+        <Label.GestureRecognizers>
+            <TapGestureRecognizer Command="{Binding GetPlaceDetailCommand}"
+                                  CommandParameter="{Binding RecentPlace2}"/>
+        </Label.GestureRecognizers>
+   </Label>
+    
+    
+</Grid>
