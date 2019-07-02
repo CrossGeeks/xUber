@@ -3,7 +3,7 @@ Uber Clone using Xamarin Forms
 
 
 ## Result 
-<img  width="600" src="Screenshots/sample.gif"/>
+<img  width="400" src="Screenshots/sample.gif"/>
 <img width="600" src="Screenshots/screenshot1.png" />
 <img width="600" src="Screenshots/screenshot2.png"/>
 <img width="600" src="Screenshots/screenshot3.png" />
