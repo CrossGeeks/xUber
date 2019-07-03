@@ -1,7 +1,7 @@
 # xUber
 Uber Clone using Xamarin Forms
 
-Blog post: [Introducing xUber  - Uber Clone in Xamarin Forms](https://www.xamboy.com/2019/07/02/introducing-xuber-uber-clone-in-xamarin-forms)
+Blog post: [Introducing xUber  - Uber Clone using Xamarin Forms](https://www.xamboy.com/2019/07/02/introducing-xuber-uber-clone-using-xamarin-forms)
 
 <p align="center">
 <img  width="400" src="Screenshots/sample.gif"/>
