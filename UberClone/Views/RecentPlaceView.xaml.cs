@@ -4,10 +4,6 @@ namespace UberClone.Views
 {
     public partial class RecentPlaceView : Grid
     {
-        public RecentPlaceView()
-        {
-            InitializeComponent();
-        }
-
+        public RecentPlaceView() => InitializeComponent();
     }
 }

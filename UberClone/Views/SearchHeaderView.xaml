@@ -2,33 +2,25 @@
 <Grid xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="UberClone.Views.SearchHeaderView"
-            xmlns:enumVal="clr-namespace:UberClone.Helpers"
+             xmlns:helpers="clr-namespace:UberClone.Helpers"
              Padding="15,20"
              ColumnSpacing="10"
              RowSpacing="10"
              BackgroundColor="White"
-             VerticalOptions="Start">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-       <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-      </Grid.ColumnDefinitions>
+             VerticalOptions="Start"
+             RowDefinitions="Auto, Auto, Auto"
+             ColumnDefinitions="Auto, *, Auto">
     
        <Image Source="ic_back"
-              Margin="0,0,0,0"
+              Margin="0"
               x:Name="ic_Back"
               HeightRequest="30"
               WidthRequest="30"
               Grid.Row="0"
               Grid.Column="0">
                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ChangePageStatusCommand}"
-                                          CommandParameter="{x:Static enumVal:PageStatusEnum.Default}"/>
+                    <TapGestureRecognizer Command="{Binding FireTriggerCommand}"
+                                          CommandParameter="{x:Static helpers:XUberTrigger.Cancel}" />
                 </Image.GestureRecognizers>
         </Image>
     
@@ -57,7 +49,7 @@
                        VerticalOptions="FillAndExpand"
                        Color="Gray"/>
               <BoxView HeightRequest="5"
-                       WidthRequest="5"
+                      WidthRequest="5"
                        Color="Gray"
                        x:Name="destionationView">
                        <BoxView.Triggers>
@@ -72,15 +64,16 @@
        </StackLayout>
     
         <Entry Placeholder="Enter Pickup"
+               IsFocused="{Binding IsOriginFocused}"
                Grid.Row="1" 
                Grid.Column="1"
                Text="{Binding PickupLocation}"
                x:Name="originEntry"
                ReturnType="Search"
-               HorizontalOptions="FillAndExpand" />
+               HorizontalOptions="FillAndExpand"/>
     
         <Entry Placeholder="Where to?"
-               PropertyChanged="OnDestinationEntryChange"
+               IsFocused="{Binding IsDestinationFocused}"
                Grid.Row="2"
                Grid.Column="1"
                Text="{Binding DestinationLocation}"

@@ -18,17 +18,10 @@
                     <ViewCell>
                         <Grid Padding="20,15"
                               RowSpacing="2"
-                              ColumnSpacing="20">
+                              ColumnSpacing="20"
+                              RowDefinitions="Auto, Auto"
+                              ColumnDefinitions="Auto, *">
                         
-                            <Grid.RowDefinitions>
-                                  <RowDefinition Height="Auto"/>
-                                  <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                              <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="*"/>        
-                              </Grid.ColumnDefinitions>
-                    
                               <Image Source="ic_recentlocation"
                                      HeightRequest="35"
                                      WidthRequest="35"

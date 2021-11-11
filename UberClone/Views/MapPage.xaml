@@ -1,43 +1,38 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
              xmlns:local="clr-namespace:UberClone.Views"
-             xmlns:enumVal="clr-namespace:UberClone.Helpers"
-             x:Class="UberClone.Views.MapPage" 
-             CenterMapCommand="{Binding CenterMapCommand}"
-             DrawRouteCommand="{Binding DrawRouteCommand}"
-             CleanPolylineCommand="{Binding CleanPolylineCommand}">
-    
+             xmlns:helpers="clr-namespace:UberClone.Helpers"
+             xmlns:controls="clr-namespace:UberClone.Controls"
+             xmlns:viewModels="clr-namespace:UberClone.ViewModels"
+             x:Class="UberClone.Views.MapPage" >
+    <ContentPage.BindingContext>
+        <viewModels:MapPageViewModel/>
+    </ContentPage.BindingContext>
     <Grid RowSpacing="0"
           x:Name="layout"
-          VerticalOptions="FillAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+          VerticalOptions="FillAndExpand"
+          RowDefinitions="Auto, *">
         <Grid Grid.Row="0"
               Grid.RowSpan="2"
               ColumnSpacing="0"
-              RowSpacing="0">
-                  <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-                    <maps:Map x:Name="map"
+              RowSpacing="0"
+              RowDefinitions="*, Auto">
+                    <controls:ExtendedMap  x:Name="map" 
                               Grid.Row="0"
-                              CameraIdled="Handle_CameraIdled"
-                              PinClicked="Map_PinClicked"
-                             
-                              HorizontalOptions="FillAndExpand"/>
+                              HorizontalOptions="FillAndExpand"
+                              CenterMapCommand="{Binding CenterMapCommand}"
+                              DrawRouteCommand="{Binding DrawRouteCommand}"
+                              CleanPolylineCommand="{Binding CleanPolylineCommand}"
+                              CameraIdledCommand="{Binding GetLocationNameCommand}" />
             
-                    <local:RecentPlaceView  
-                 Grid.Row="1"
-                                    IsVisible="false">
+                   <local:RecentPlaceView  
+                                  Grid.Row="1"
+                                  IsVisible="false">
                    <local:RecentPlaceView.Triggers>
                     <DataTrigger TargetType="local:RecentPlaceView"
-                                 Binding="{Binding PageStatusEnum}"
-                                 Value="Default">
+                                 Binding="{Binding State}"
+                                 Value="{x:Static helpers:XUberState.Initial}">
                          <Setter Property="IsVisible" Value="True"/>
                     </DataTrigger>
                 </local:RecentPlaceView.Triggers>
@@ -47,9 +42,9 @@
                                     Grid.Row="1">
                       <local:PriceView.Triggers>
                             <DataTrigger TargetType="local:PriceView"
-                                         Binding="{Binding PageStatusEnum}"
-                                         Value="ShowingRoute">
-                                 <Setter Property="IsVisible" Value="True"/>
+                                         Binding="{Binding State}"
+                                         Value="{x:Static helpers:XUberState.ChoosingRide}">
+                                 <Setter Property="IsVisible" Value="True"/>    
                             </DataTrigger>
                         </local:PriceView.Triggers>
                    </local:PriceView>
@@ -68,14 +63,14 @@
               Grid.RowSpan="2">
               <Image.Triggers>
                 <DataTrigger TargetType="Image"
-                             Binding="{Binding PageStatusEnum}"
-                             Value="ShowingRoute">
+                             Binding="{Binding State}"
+                             Value="{x:Static helpers:XUberState.ChoosingRide}">
                      <Setter Property="IsVisible" Value="True"/>
                 </DataTrigger>
             </Image.Triggers>
             <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding ChangePageStatusCommand}"
-                                          CommandParameter="{x:Static enumVal:PageStatusEnum.Default}"/>
+                    <TapGestureRecognizer Command="{Binding FireTriggerCommand}"
+                                          CommandParameter="{x:Static helpers:XUberTrigger.Cancel}"/>
                 </Image.GestureRecognizers>
         </Image>
         
@@ -91,27 +86,19 @@
                Grid.RowSpan="2">
             <Image.Triggers>
                 <DataTrigger TargetType="Image"
-                             Binding="{Binding PageStatusEnum}"
-                             Value="Default">
+                             Binding="{Binding State}"
+                             Value="{x:Static helpers:XUberState.Initial}">
                      <Setter Property="IsVisible" Value="True"/>
                 </DataTrigger>
             </Image.Triggers>
             <Image.GestureRecognizers>
-               <TapGestureRecognizer Tapped="Handle_Tapped"/>
+               <TapGestureRecognizer Tapped="OnMenuTapped"/>
             </Image.GestureRecognizers>
         </Image>
         
-        <local:SearchHeaderView IsVisible="false"
+        <local:SearchHeaderView IsVisible="{Binding IsSearching}"
                                 x:Name="headerSearch"
-                                Grid.Row="0" >
-            <local:SearchHeaderView.Triggers>
-                <DataTrigger TargetType="local:SearchHeaderView"
-                             Binding="{Binding PageStatusEnum}"
-                             Value="Searching">
-                     <Setter Property="IsVisible" Value="True"/>
-                </DataTrigger>
-            </local:SearchHeaderView.Triggers>
-        </local:SearchHeaderView>
+                                Grid.Row="0"/>
             
         <Image Source="ic_pickuplocation.png"
              IsVisible="false"
@@ -123,8 +110,8 @@
              Grid.RowSpan="2">
             <Image.Triggers>
                 <DataTrigger TargetType="Image"
-                             Binding="{Binding PageStatusEnum}"
-                             Value="Searching">
+                             Binding="{Binding State}"
+                             Value="{x:Static helpers:XUberState.SearchingOrigin}">
                      <Setter Property="IsVisible" Value="True"/>
                 </DataTrigger>
             </Image.Triggers>
@@ -136,8 +123,6 @@
                    BackgroundColor="Black"
                    Margin="40"
                    Clicked="OnDoneClicked"
-                   Command="{Binding ChooseLocationCommand}"
-                   CommandParameter="{Binding Path=CameraPosition.Target,Source={x:Reference map}}"
                    x:Name="chooseLocationButton"
                    TextColor="White"
                    FontSize="17"
@@ -147,8 +132,8 @@
                    Grid.RowSpan="2">
             <Button.Triggers>
                 <DataTrigger TargetType="Button"
-                             Binding="{Binding PageStatusEnum}"
-                             Value="Searching">
+                             Binding="{Binding State}"
+                             Value="{x:Static helpers:XUberState.SearchingOrigin}">
                      <Setter Property="IsVisible" Value="True"/>
                 </DataTrigger>
             </Button.Triggers>
@@ -156,6 +141,14 @@
         
         <local:SearchContentView IsVisible="false" 
                                  Grid.Row="1" 
-                                 x:Name="searchContentView"/>
+                                 x:Name="searchContentView">
+             <local:SearchContentView.Triggers>
+                <DataTrigger TargetType="local:SearchContentView"
+                             Binding="{Binding State}"
+                             Value="{x:Static helpers:XUberState.SearchingDestination}">
+                     <Setter Property="IsVisible" Value="True"/>
+                </DataTrigger>
+            </local:SearchContentView.Triggers>
+        </local:SearchContentView>
     </Grid>
 </ContentPage>

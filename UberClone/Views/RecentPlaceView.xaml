@@ -3,30 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="UberClone.Views.RecentPlaceView"
              xmlns:model="clr-namespace:UberClone.Models"
-             xmlns:enumVal="clr-namespace:UberClone.Helpers"
+             xmlns:helpers="clr-namespace:UberClone.Helpers"
              VerticalOptions="End"
              HorizontalOptions="FillAndExpand"
              BackgroundColor="White"
              RowSpacing="5"
              ColumnSpacing="15"
-             Padding="0,20">
-    
-     <Grid.RowDefinitions>
-        <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-         <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-       <RowDefinition Height="Auto"/>
-       <RowDefinition Height="Auto"/>
-       <RowDefinition Height="Auto"/>
-        <RowDefinition Height="Auto"/>
-    </Grid.RowDefinitions>
-    
-    <Grid.ColumnDefinitions>
-        <ColumnDefinition Width="Auto"/>
-        <ColumnDefinition Width="*"/>
-    </Grid.ColumnDefinitions>
-    
+             Padding="0,20"
+             RowDefinitions="Auto, Auto, Auto,Auto,Auto,Auto,Auto,Auto"
+             ColumnDefinitions="Auto, *">
+
      <Label Text="{Binding Source={x:Static model:User.ShortName}, StringFormat='Good morning, {0}'}"
              FontAttributes="Bold"
              FontSize="17"
@@ -53,8 +39,8 @@
          <Label Text="Where to?"
                 FontSize="18"/>
          <StackLayout.GestureRecognizers>
-            <TapGestureRecognizer Command="{Binding ChangePageStatusCommand}"
-                                  CommandParameter="{x:Static enumVal:PageStatusEnum.Searching}"/>
+            <TapGestureRecognizer Command="{Binding FireTriggerCommand}"
+                                  CommandParameter="{x:Static helpers:XUberTrigger.ChooseDestination}"/>
         </StackLayout.GestureRecognizers>
       </StackLayout>
     

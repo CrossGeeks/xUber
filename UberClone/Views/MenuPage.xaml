@@ -14,20 +14,9 @@
                       ColumnSpacing="15"
                       HorizontalOptions="FillAndExpand"
                       Padding="20,50,20,20"
-                      VerticalOptions="Start">
-                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    
+                      VerticalOptions="Start"
+                      RowDefinitions="Auto, Auto,Auto,Auto,Auto,Auto"
+                      ColumnDefinitions="Auto, *">
                     <controls:CircleImage Source="{Binding Source={x:Static model:User.UserImage}}"
                                           BorderColor="Gray"
                                           BorderThickness="2"
@@ -89,7 +78,6 @@
                     <Label Text="Free Rides" Style="{StaticResource MenuLabel}" />
                     <Label Text="Settings" Style="{StaticResource MenuLabel}" />
                 </StackLayout>
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
