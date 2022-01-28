@@ -2,6 +2,7 @@
 Uber Clone using Xamarin Forms
 
 Blog post: [Introducing xUber  - Uber Clone using Xamarin Forms](https://www.xamboy.com/2019/07/03/introducing-xuber-uber-clone-using-xamarin-forms)
+Blog post using State machine:[Uber Clone App using State Machine in Xamarin Forms](https://www.xamboy.com/2022/01/28/uber-clone-app-using-state-machine-in-xamarin-forms/)
 
 To test replace the **GoogleMapsApiKey** to use your own Google Maps Api Key in Constants.cs 
 
@@ -33,6 +34,8 @@ https://github.com/AndreiMisiukevich/CardView
 - **Acr.UserDialogs** - A cross platform library that allows you to call for standard user dialogs. https://github.com/aritchie/userdialogs
 
 - **Xam.Plugins.Forms.ImageCircle** - Circle Images for your Xamarin.Forms Applications. https://github.com/jamesmontemagno/ImageCirclePlugin
-
+                                                    
+- **Stateless** - https://github.com/dotnet-state-machine/stateless
+                                                    
 - **Icon8 Icons** - Free design resources sand software.       
 https://icons8.com/
