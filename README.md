@@ -2,7 +2,8 @@
 Uber Clone using Xamarin Forms
 
 Blog post: [Introducing xUber  - Uber Clone using Xamarin Forms](https://www.xamboy.com/2019/07/03/introducing-xuber-uber-clone-using-xamarin-forms)
-Blog post using State machine:[Uber Clone App using State Machine in Xamarin Forms](https://www.xamboy.com/2022/01/28/uber-clone-app-using-state-machine-in-xamarin-forms/)
+
+Blog post using State machine: [Uber Clone App using State Machine in Xamarin Forms](https://www.xamboy.com/2022/01/28/uber-clone-app-using-state-machine-in-xamarin-forms/)
 
 To test replace the **GoogleMapsApiKey** to use your own Google Maps Api Key in Constants.cs 
 
